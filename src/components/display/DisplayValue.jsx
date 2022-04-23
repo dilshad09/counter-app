@@ -1,9 +1,9 @@
 import React from 'react'
 
-const DisplayValue = () => {
+const DisplayValue = ({value}) => {
   return (
     <div>
-      <p>Counter Value</p>
+      <p style={{fontSize:"12px"}}>Counter Value {value}</p>
     </div>
   )
 }

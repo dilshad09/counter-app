@@ -7,10 +7,10 @@ body{
     background-color: rgb(140, 120, 120);
 }
 .container{
-    width: 20vw;
-    background-color: rgb(255,255,255);
+    width: 257px;
+    background-color:  #FFFFFF;
     margin: 5rem auto ;
-    padding: 2rem;
+    padding: 1rem;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 .body-item{
@@ -18,23 +18,26 @@ body{
     display: flex;
     border: 1px solid rgb(179,64,64);
     margin: 0.5rem auto;
-    border-radius: 10px;
+    border-radius: 8px;
     overflow: hidden;
 }
 .item:nth-child(odd){
-    background-color: white;
+    background-color: #FFFFFF;
     color: black;
 }
 
 .item:nth-child(odd):hover {
-    background-color: rgb(179,64,64);
+    background-color: #B24242;
     color: white;
     cursor: pointer;
 }
 
 .item{
-    width: 33.333%;
+    width: 60px;
+    height: 56px;
+    font-size: 21px;
     padding: 1rem;
-    background-color:  rgb(251,233,233);
-    color: rgb(179,64,64);
+    background-color: #FBE8E8;
+    color: #B24242;
 }
+
