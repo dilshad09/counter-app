@@ -6,14 +6,15 @@
     --black-color: #000000;
     --border-radius: 8px;
 }
-/* Chrome, Safari, Edge, Opera */
+
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Firefox */
+
 input[type=number] {
   -moz-appearance: textfield;
 }
@@ -22,7 +23,7 @@ html, body {
     position: relative;
     width: 100%;
     height: 100vh;
-    background-color: rgb(249, 249, 249);
+    background-color: grey;
 }
 .counter {
     position: absolute;
@@ -31,12 +32,12 @@ html, body {
     transform: translate(-50%, -50%);
     background-color: var(--white-color);
     padding: 20px 25px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 .counter .buttonGroup {
     width: 180px;
     height: 56px;
-    /* border: 1px solid var(--primary-color);
-    border-radius: var(--border-radius); */
+   
 }
 .counter .buttonGroup .buttonGroup_btn {
     width: 60px;
@@ -56,6 +57,12 @@ html, body {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
 }
+.buttonGroup_btn.minus:hover{
+  background-color: #B24242;
+  color: var(--white-color) !important;
+  
+}
+
 .counter .buttonGroup .buttonGroup_btn.minus {
     color: var(--primary-color);
     border-left: 1px solid var(--primary-color);
