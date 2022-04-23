@@ -1,27 +1,67 @@
-import React, { useState } from 'react'
-import './Counter.css'
-import DisplayValue from '../display/DisplayValue'
-import loadingImg from '../../images/loading-buffering.gif'
+import React, { useCallback, useEffect, useState } from 'react';
+import { GET } from '../apiCalls/get';
+import { PUT } from '../apiCalls/put';
+import { counterName } from '../helper/config';
+import { debounce } from '../helper/utils';
+import CounterValue from './CounterValue';
 
-const initialValue = ()=>{
-  fetch('https://interview-8e4c5-default-rtdb.firebaseio.com/front-end/counter1.json').then((res)=>res.json()).then((response=>{
-    return response
-  }))
-}
-const Counter = () => {
-  const [value, setValue] = useState(()=>initialValue() || 1)
-  console.log(value)
+function Counter() {
+  const defaultCounter = 1;
+  const MAX_VALUE = Number.MAX_VALUE || 1000;
+  const [count, setCounter] = useState(defaultCounter);
+  const [loader, setLoader] = useState(false);
+
+  useEffect(() => {
+    getCounter();
+  },[])
+
+  const getCounter = async () => {
+    const counter = await GET(`${counterName}.json`);
+    setCounter(counter || defaultCounter);
+  }
+
+  const dispatchPutCounter = useCallback(debounce(value => putCounter(value)),[])
+
+  const putCounter = async (value) => {
+    const res = await PUT(`front-end.json`, {[counterName]: value});
+    setCounter(res[counterName]);
+    setLoader(false);
+  }
+
+  const handleOnChangeCounterValue = (e) => {
+    setLoader(true);
+    const value = e?.target?.value;
+    setCounter(value);
+    dispatchPutCounter(Number(value));
+  }
+
+  const increaseDecreaseCounter = (type) => {
+    setLoader(true);
+    let value = count;
+    if(type === `+`) {
+      value++;
+    } else if(type === `-`) {
+      value--;
+    }
+    value = value > MAX_VALUE ? MAX_VALUE : value;
+    setCounter(value);
+    dispatchPutCounter(value);
+  }
+
   return (
-    <div className='container'>
-        <img src={loadingImg } alt="loading" title='loading...' style={{width:"20px"}}/> <span style={{fontSize:"12px"}}>Saving counter value</span>
-      <div className='body-item'>
-          <div className="item" onClick={()=>setValue((pre)=>pre-1)}>-</div>
-          <div className="item">{value}</div>
-          <div className="item" onClick={()=>setValue((next)=>next+1)}>+</div>
+    <div className="counter">
+        <div className={`savingLoader ${loader ? `visibility-visible` : ``}`}>
+            <span className='loader'></span>
+            <span className='savingLoader_text'>Saving counter value</span>
+        </div>
+      <div className='buttonGroup'>
+        <button className='buttonGroup_btn minus' onClick={() => increaseDecreaseCounter(`-`)}>-</button>
+        <input className='buttonGroup_btn value' type="number" onChange={handleOnChangeCounterValue} value={count || defaultCounter} />
+        <button className='buttonGroup_btn plus' onClick={() => increaseDecreaseCounter(`+`)}>+</button>
       </div>
-      <DisplayValue value={value}/>
+      <CounterValue value={count} />
     </div>
-  )
+  );
 }
 
-export default Counter
+export default Counter;
