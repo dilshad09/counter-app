@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(140, 120, 120);
+}
+.container{
+    width: 20vw;
+    background-color: whitesmoke;
+    margin: 5rem auto ;
+    padding: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+}
+.body-item{
+    width: 80%;
+    display: flex;
+    border: 1px solid rgb(179,64,64);
+    margin: 0.5rem auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.item:nth-child(odd){
+    background-color: white;
+    color: black;
+}
+
+.item:nth-child(odd):hover {
+    background-color: rgb(179,64,64);
+    color: white;
+    cursor: pointer;
+}
+
+.item{
+    width: 33.333%;
+    padding: 1rem;
+    background-color: rgb(236, 211, 211);
+    color: rgb(179,64,64);
+}
