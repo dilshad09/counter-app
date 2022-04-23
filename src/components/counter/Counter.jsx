@@ -1,5 +1,6 @@
 import React from 'react'
 import './Counter.css'
+import DisplayValue from '../display/DisplayValue'
 const Counter = () => {
   return (
     <div className='container'>
@@ -9,7 +10,7 @@ const Counter = () => {
           <div className="item">10</div>
           <div className="item">+</div>
       </div>
-      <p>Counter Value</p>
+      <DisplayValue/>
     </div>
   )
 }
